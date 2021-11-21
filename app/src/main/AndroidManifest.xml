@@ -10,11 +10,12 @@
       android:roundIcon="@mipmap/ic_launcher_round"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
+      android:name=".app.LogApplication"
       tools:ignore="GoogleAppIndexingWarning">
 
     <!-- Main Activity -->
     <activity
-        android:name=".MainActivity"
+        android:name=".presentation.activities.MainActivity"
         android:theme="@style/SplashTheme">
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />

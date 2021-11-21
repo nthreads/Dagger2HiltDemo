@@ -1,22 +1,24 @@
 ext.versions = [
 
-        'kotlinVer'             : '1.6.0',
+        'kotlinVer'     : '1.6.0',
 
-        'minSdk'                : 21,
-        'compileSdk'            : 30,
-        'targetSdk'             : 30,
+        'minSdk'        : 21,
+        'compileSdk'    : 30,
+        'targetSdk'     : 30,
 
-        'gmsServicesVer'        : '17.0.0',
-        'archNavVer'            : '2.3.1',
-        'roomVer'               : '1.1.1',
+        'gmsServicesVer': '17.0.0',
+        'archNavVer'    : '2.3.1',
+        'roomVer'       : '2.3.0',
+
+        'hiltVer'       : '2.38.1',
 
         //Retrofit
-        'retrofitVer'           : '2.6.2',
-        'okHttpVer'             : '4.2.2',
+        'retrofitVer'   : '2.6.2',
+        'okHttpVer'     : '4.2.2',
 
         //Glide
-        'glideVer'              : '4.12.0'
-       
+        'glideVer'      : '4.12.0'
+
 ]
 
 ext.deps = [
@@ -34,18 +36,23 @@ ext.deps = [
                 'lifecycleExt'    : "androidx.lifecycle:lifecycle-extensions:2.2.0",
 
                 'lifecycleCommon' : "android.arch.lifecycle:common-java8:1.1.0",
-                'roomRuntime'     : "android.arch.persistence.room:runtime:${versions.roomVer}",
-                'roomCompiler'    : "android.arch.persistence.room:compiler:${versions.roomVer}",
-                'roomRx'          : "android.arch.persistence.room:rxjava2:1.1.1",
+
+                'room'            : "androidx.room:room-runtime:${versions.roomVer}",
+                'roomCompiler'    : "androidx.room:room-compiler:${versions.roomVer}",
+
                 'biometric'       : "androidx.biometric:biometric:1.0.1"
         ],
         google    : [
                 'gson'                : "com.google.code.gson:gson:2.8.6",
+
+                'hilt'                : "com.google.dagger:hilt-android:${versions.hiltVer}",
+                'hiltCompiler'        : "com.google.dagger:hilt-compiler:${versions.hiltVer}",
+
                 'fireBaseRemoteConfig': "com.google.firebase:firebase-config:19.1.4",
                 'maps'                : "com.google.android.gms:play-services-maps:${versions.gmsServicesVer}",
                 'mapUtils'            : "com.google.maps.android:android-maps-utils:0.5",
                 'location'            : "com.google.android.gms:play-services-location:${versions.gmsServicesVer}",
-                'places'              : "com.google.android.gms:play-services-places:${versions.gmsServicesVer}",
+                'places'              : "com.google.android.gms:play-services-places:${versions.gmsServicesVer}"
 
         ],
         kotlin    : [

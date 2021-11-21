@@ -1,20 +1,35 @@
-
-package com.nthreads.dagger2hilt
+package com.nthreads.dagger2hilt.presentation.activities
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.nthreads.dagger2hilt.R
+import com.nthreads.dagger2hilt.app.LogApplication
+import com.nthreads.dagger2hilt.navigator.AppNavigator
+import com.nthreads.dagger2hilt.navigator.Screens
+import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * Main Screen
- */
+
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    // Switch to AppTheme for displaying the activity
-    setTheme(R.style.AppTheme)
+    private lateinit var navigator: AppNavigator
 
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_main)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-  }
+        navigator = (applicationContext as LogApplication).serviceLocator.provideNavigator(this)
+
+        if (savedInstanceState == null) {
+            navigator.navigateTo(Screens.BUTTONS)
+        }
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+
+        if (supportFragmentManager.backStackEntryCount == 0) {
+            finish()
+        }
+    }
 }
