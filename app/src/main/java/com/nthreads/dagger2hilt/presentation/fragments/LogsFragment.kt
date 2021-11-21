@@ -28,7 +28,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.nthreads.dagger2hilt.R
 import com.nthreads.dagger2hilt.app.LogApplication
 import com.nthreads.dagger2hilt.data.Log
+import com.nthreads.dagger2hilt.data.LoggerDataSource
 import com.nthreads.dagger2hilt.data.LoggerLocalDataSource
+import com.nthreads.dagger2hilt.di.InMemoryLogger
 import com.nthreads.dagger2hilt.utils.DateFormatter
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -40,8 +42,10 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class LogsFragment : Fragment() {
 
-    @Inject
-    lateinit var logger: LoggerLocalDataSource
+    @InMemoryLogger
+    @Inject lateinit var logger: LoggerDataSource
+
+    //@Inject lateinit var logger: LoggerLocalDataSource
     @Inject lateinit var dateFormatter: DateFormatter
 
     private lateinit var recyclerView: RecyclerView

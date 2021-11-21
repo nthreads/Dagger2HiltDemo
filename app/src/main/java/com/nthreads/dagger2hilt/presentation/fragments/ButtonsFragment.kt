@@ -25,7 +25,9 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.nthreads.dagger2hilt.R
 import com.nthreads.dagger2hilt.app.LogApplication
+import com.nthreads.dagger2hilt.data.LoggerDataSource
 import com.nthreads.dagger2hilt.data.LoggerLocalDataSource
+import com.nthreads.dagger2hilt.di.InMemoryLogger
 import com.nthreads.dagger2hilt.navigator.AppNavigator
 import com.nthreads.dagger2hilt.navigator.Screens
 import com.nthreads.dagger2hilt.utils.DateFormatter
@@ -38,7 +40,9 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class ButtonsFragment : Fragment() {
 
-    @Inject lateinit var logger: LoggerLocalDataSource
+    @InMemoryLogger
+    @Inject lateinit var logger: LoggerDataSource
+    //@Inject lateinit var logger: LoggerLocalDataSource
     @Inject lateinit var navigator: AppNavigator
 
     override fun onCreateView(
