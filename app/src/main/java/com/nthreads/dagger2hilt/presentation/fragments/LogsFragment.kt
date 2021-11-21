@@ -30,16 +30,23 @@ import com.nthreads.dagger2hilt.app.LogApplication
 import com.nthreads.dagger2hilt.data.Log
 import com.nthreads.dagger2hilt.data.LoggerLocalDataSource
 import com.nthreads.dagger2hilt.utils.DateFormatter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Fragment that displays the database logs.
  */
+
+@AndroidEntryPoint
 class LogsFragment : Fragment() {
 
-    private lateinit var logger: LoggerLocalDataSource
-    private lateinit var dateFormatter: DateFormatter
+    @Inject
+    lateinit var logger: LoggerLocalDataSource
+    @Inject lateinit var dateFormatter: DateFormatter
 
     private lateinit var recyclerView: RecyclerView
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,18 +60,6 @@ class LogsFragment : Fragment() {
         recyclerView = view.findViewById<RecyclerView>(R.id.recycler_view).apply {
             setHasFixedSize(true)
         }
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        populateFields(context)
-    }
-
-    private fun populateFields(context: Context) {
-        logger = (context.applicationContext as LogApplication).serviceLocator.loggerLocalDataSource
-        dateFormatter =
-            (context.applicationContext as LogApplication).serviceLocator.provideDateFormatter()
     }
 
     override fun onResume() {

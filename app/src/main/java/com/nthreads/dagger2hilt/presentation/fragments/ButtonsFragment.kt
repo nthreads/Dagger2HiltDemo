@@ -28,14 +28,18 @@ import com.nthreads.dagger2hilt.app.LogApplication
 import com.nthreads.dagger2hilt.data.LoggerLocalDataSource
 import com.nthreads.dagger2hilt.navigator.AppNavigator
 import com.nthreads.dagger2hilt.navigator.Screens
+import com.nthreads.dagger2hilt.utils.DateFormatter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 /**
  * Fragment that displays buttons whose interactions are recorded.
  */
+@AndroidEntryPoint
 class ButtonsFragment : Fragment() {
 
-    private lateinit var logger: LoggerLocalDataSource
-    private lateinit var navigator: AppNavigator
+    @Inject lateinit var logger: LoggerLocalDataSource
+    @Inject lateinit var navigator: AppNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,19 +49,6 @@ class ButtonsFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_buttons, container, false)
     }
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-
-        populateFields(context)
-    }
-
-    private fun populateFields(context: Context) {
-        logger = (context.applicationContext as LogApplication).serviceLocator.loggerLocalDataSource
-
-        navigator = (context.applicationContext as LogApplication).serviceLocator.provideNavigator(
-            requireActivity()
-        )
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<Button>(R.id.button1).setOnClickListener {
